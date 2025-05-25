@@ -3,12 +3,10 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
-# This class represents the Question model.
-# It contains a foreign key to the User model, a text field for the question
-# text
 class Question(models.Model):
     """
-    This class represents the Question model.
+    This class represents a question asked by a user.
+    It contains a foreign key to the User model, a text field for the question
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     question_text = models.TextField()
@@ -18,9 +16,11 @@ class Question(models.Model):
         return self.question_text
 
 
-# This class represents the Event model.
-# It contains fields for the city, date, and venue of the event.
 class Event(models.Model):
+    """
+    This class represents an event in the political context.
+    It contains fields for the city, date, and venue of the event.
+    """
     city = models.CharField(max_length=100)
     date = models.DateField()
     venue = models.CharField(max_length=200)

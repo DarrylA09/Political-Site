@@ -17,7 +17,7 @@ def landing(request):
 
 def signup(request):
     """
-    This function signs up a user.
+    This function renders the signup page and handles user registration.
     """
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -30,9 +30,9 @@ def signup(request):
 
 
 def authenticate_user(request):
-    '''
-    This function authenticates the user.
-    '''
+    """
+    This function authenticates the user based on the username and password
+    """
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -59,15 +59,15 @@ def authenticate_user(request):
 
 
 def user_login(request):
-    '''
+    """
     This function renders the login page.
-    '''
+    """
     return render(request, 'registration/login.html')
 
 
 def ask_question(request):
     """
-    This function allows a user to ask a question.
+    This function renders the home page where users can ask questions.
     """
     if request.method == "POST":
         form = QuestionForm(request.POST)
@@ -83,7 +83,7 @@ def ask_question(request):
 
 def questions_list(request):
     """
-    This function retrieves and displays all questions.
+    This function retrieves and displays all questions asked by users.
     """
     questions = Question.objects.all()
     return render(request, 'political/questions.html', {'questions': questions})
@@ -91,7 +91,7 @@ def questions_list(request):
 
 def success(request):
     """
-    This function renders the success page.
+    This function renders the success page after a question is asked.
     """
     return render(request, 'political/success.html')
 

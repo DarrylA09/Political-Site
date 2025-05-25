@@ -11,6 +11,10 @@ from .models import Question, Event
 def landing(request):
     """
     This function renders the landing page.
+
+    :param request: The HTTP request object.
+    :return: Rendered landing page.
+    :rtype: HttpResponse
     """
     return render(request, 'political/landing.html')
 
@@ -18,6 +22,12 @@ def landing(request):
 def signup(request):
     """
     This function renders the signup page and handles user registration.
+    
+    :param request: The HTTP request object.
+
+    :return: Rendered signup page with the user creation form.
+
+    :rtype: HttpResponse
     """
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -32,6 +42,13 @@ def signup(request):
 def authenticate_user(request):
     """
     This function authenticates the user based on the username and password
+
+    :param request: The HTTP request object containing user credentials.
+
+    :return: Redirects to the home page if authentication is successful,
+             otherwise redirects to the login page with an error message.
+    
+    :rtype: HttpResponseRedirect
     """
     if request.method == 'POST':
         username = request.POST['username']
@@ -61,6 +78,12 @@ def authenticate_user(request):
 def user_login(request):
     """
     This function renders the login page.
+
+    :param request: The HTTP request object.
+
+    :return: Rendered login page.
+
+    :rtype: HttpResponse
     """
     return render(request, 'registration/login.html')
 
@@ -68,6 +91,12 @@ def user_login(request):
 def ask_question(request):
     """
     This function renders the home page where users can ask questions.
+
+    :param request: The HTTP request object.
+
+    :return: Rendered home page with the question form.
+
+    :rtype: HttpResponse
     """
     if request.method == "POST":
         form = QuestionForm(request.POST)
@@ -84,6 +113,12 @@ def ask_question(request):
 def questions_list(request):
     """
     This function retrieves and displays all questions asked by users.
+
+    :param request: The HTTP request object.
+
+    :return: Rendered questions page with a list of all questions.
+
+    :rtype: HttpResponse
     """
     questions = Question.objects.all()
     return render(request, 'political/questions.html', {'questions': questions})
@@ -92,6 +127,12 @@ def questions_list(request):
 def success(request):
     """
     This function renders the success page after a question is asked.
+
+    :param request: The HTTP request object.
+
+    :return: Rendered success page.
+
+    :rtype: HttpResponse
     """
     return render(request, 'political/success.html')
 
@@ -99,6 +140,12 @@ def success(request):
 def vision(request):
     """
     This function renders the vision and mission page.
+
+    :param request: The HTTP request object.
+
+    :return: Rendered vision and mission page.
+
+    :rtype: HttpResponse
     """
     return render(request, 'political/vision_mission.html')
 
@@ -106,6 +153,13 @@ def vision(request):
 def campaign_dates(request):
     """
     This function retrieves and displays all campaign events.
+
+
+    :param request: The HTTP request object.
+
+    :return: Rendered campaign dates page with a list of all events.
+
+    :rtype: HttpResponse
     """
     events = Event.objects.all()
     return render(request, 'political/campaign_dates.html', {'events': events})

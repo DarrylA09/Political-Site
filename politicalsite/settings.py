@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import sys
+import django
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -133,3 +136,12 @@ LOGIN_REDIRECT_URL = "/home/"
 
 # Redirect to the landing page after logout
 LOGOUT_REDIRECT_URL = "/"  
+
+# Ensure the Django version is compatible
+sys.path.insert(0, os.path.abspath('..'))
+
+# Set the Django settings module
+os.environ['DJANGO_SETTINGS_MODULE'] = 'politicalsite.settings'
+
+# Initialize Django
+django.setup()
